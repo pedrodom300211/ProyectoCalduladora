@@ -1,0 +1,63 @@
+body{
+    background-color: rgb(32, 130, 187);
+}
+
+.lblDatos{
+    font-size: 50px;
+
+}
+.FondoCalculadora{
+  margin: auto;
+    align-items: center;
+    height: 800px;
+    width: 450px;
+    background-color: rgb(32, 130, 187);
+    
+    
+}
+.PantallaTexto{
+    height: 25%;
+    background-color: rgb(16, 63, 90);
+    border-radius: 10px;
+}
+.Botones{
+    display: flex;
+    gap: 10px;
+   
+    height: 75%;
+    background-color:rgb(12, 51, 73);
+    border-radius: 10px;
+}
+.boton
+{
+    
+   margin-left: 2%;
+    width: 100px; /* Ancho del botón */
+    height: 100px; /* Alto del botón, igual al ancho para hacer un círculo */
+    border-radius: 50%; /* Hace que las esquinas sean completamente redondeadas */
+    display: flex; /* Hace que el contenido se centre */
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle un efecto 3D */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transición suave */
+    background-color: rgb(32, 94, 129); /* Color de fondo del botón */
+    color: #000000; /* Color de texto del botón */
+    border: none; /* Elimina el borde del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    font-size: 16px; /* Tamaño del texto del botón */
+    margin-bottom: 10px;
+    margin-top: 10px;
+    
+} 
+.boton:hover{
+    background-color: rgb(45, 129, 179);    
+}
+.eliminar{
+    background-color: #5f345c;
+}
+.simbolo{
+    background-color: #59a4d6;
+}
+.igual{
+    background-color: #298ed1;
+}
