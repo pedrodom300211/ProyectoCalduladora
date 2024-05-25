@@ -1,5 +1,5 @@
 /*Variables */
-var label = document.getElementById('lblDatos');
+var labelDatos = document.getElementById('lblDatos');
 var btn1= document.getElementById('btn1');
 var btn2= document.getElementById('btn2');
 var btn3= document.getElementById('btn3');
@@ -21,6 +21,9 @@ var btnDelete= document.getElementById('btnDelete');
 var btnBorrarTodo= document.getElementById('BorrarTodo');
 var BtnComa= document.getElementById('btnComa');
 var BanderaParentesis = true;
+var PrimerBloque;
+var SegundoBloque;
+var simboloOperacion;
 /* Evento Click Botones*/
 btn1.addEventListener('click',function() {
     AgregarAlLabel(1); 
@@ -87,7 +90,13 @@ btnMenos.addEventListener('click',function()
 });
 
 btnMas.addEventListener('click',function()
-{
+{   
+    var TextoLabelPrimeraParte = labelDatos.innerText;
+    var ValorLblPrimeraParte= parseInt(TextoLabelPrimeraParte);
+    PrimerBloque=ValorLblPrimeraParte;
+   
+    labelDatos.innerText="";
+   
     AgregarAlLabel('+');
 });
 
@@ -99,18 +108,19 @@ btnDelete.addEventListener('click',function(){
     borrarUltimoCaracter();
 });
 btnIgual.addEventListener('click',function(){
-    let label = document.getElementById('lblDatos');
-    leerLabel(label);
+   
+    
+    OperacionIgual(PrimerBloque);
 
 });
 /*Funciones */
 function AgregarAlLabel( ValorAAgregar){
    
-    label.innerText+=ValorAAgregar;
+    labelDatos.innerText+=ValorAAgregar;
 }
 function BorrarTodo( ){
    
-    label.innerText="";
+    labelDatos.innerText="";
 }
 function borrarUltimoCaracter() {
     let label = document.getElementById('lblDatos');
@@ -120,45 +130,25 @@ function borrarUltimoCaracter() {
         label.innerText = TextoLabel.slice(0, -1); // Eliminar el último carácter
     }else{ alert("No hay Numeros para Borrar")}
 }
-function leerLabel(LabelALeer)
-{
-    var TextoLabel= LabelALeer.innerText;
-    var PrimerBloque="";
-    var SegundoBloque="";
-    var Simbolo;
-    var Bandera=false;
-    for(var i=0;i<TextoLabel.length;i++){
-           if(TextoLabel[0]=='%'||TextoLabel[0]=='÷'||TextoLabel[0]=='+'||TextoLabel[0]=='x'||TextoLabel[0]=='-'){
-            alert("Operacion Invalida")
-            BorrarTodo();
-            
-        }else{
-            if(TextoLabel[i]=='%'||TextoLabel[i]=='÷'||TextoLabel[i]=='+'||TextoLabel[i]=='x'||TextoLabel[i]=='-'&& Banderaandera==true ){
-                
-                Simbolo=TextoLabel[i];
-                
-                Bandera=Flase;
-                SegundoBloque+=TextoLabel[i];
-                
-            } else
-            {
-                PrimerBloque+=TextoLabel[i];
-
-            }
-            
-        }
-    } 
+function OperacionIgual( valorPrimerBloque)
+{   
+    simboloOperacion=labelDatos.innerText[0];
+    var nuevolabelDatos=labelDatos.innerText.slice(1);
+    var TextoLabelSegundaParte = nuevolabelDatos;
+    var ValorLblSegundaParte= parseInt(TextoLabelSegundaParte);
+    SegundoBloque=ValorLblSegundaParte
+   
+    if(esSuma(simboloOperacion)){
+        var resultado = valorPrimerBloque+SegundoBloque;
+        labelDatos.innerText="";
+        labelDatos.innerText=resultado;
+    }
+}
+ 
   
     
-    if(esSuma(Simbolo))
-        {
-            let resultado =PrimerBloque +SegundoBloque;
-            BorrarTodo();
-            AgregarAlLabel(resultado);
-        }
  
-    
-}
+
 function esSuma(simbolo){
     if(simbolo=='+'){return true}else{return false;}
 }
