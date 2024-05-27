@@ -24,35 +24,76 @@ var BanderaParentesis = true;
 var PrimerBloque;
 var SegundoBloque;
 var simboloOperacion;
+var banderaValorPrimerBloque=true;
 /* Evento Click Botones*/
 btn1.addEventListener('click',function() {
+    if(banderaValorPrimerBloque){
+    labelDatos.innerText="";
+    banderaValorPrimerBloque=false;
+    }
     AgregarAlLabel(1); 
 });
 btn2.addEventListener('click',function() {
+    if(banderaValorPrimerBloque){
+        labelDatos.innerText="";
+        banderaValorPrimerBloque=false;
+        }
     AgregarAlLabel(2); 
 });
 btn3.addEventListener('click',function() {
+    if(banderaValorPrimerBloque){
+        labelDatos.innerText="";
+        banderaValorPrimerBloque=false;
+        }
     AgregarAlLabel(3); 
 });
 btn4.addEventListener('click',function() {
+    if(banderaValorPrimerBloque){
+        labelDatos.innerText="";
+        banderaValorPrimerBloque=false;
+        }
     AgregarAlLabel(4); 
 });
 btn5.addEventListener('click',function() {
+    if(banderaValorPrimerBloque){
+        labelDatos.innerText="";
+        banderaValorPrimerBloque=false;
+        }
     AgregarAlLabel(5); 
 });
 btn6.addEventListener('click',function() {
+    if(banderaValorPrimerBloque){
+        labelDatos.innerText="";
+        banderaValorPrimerBloque=false;
+        }
     AgregarAlLabel(6); 
 });
 btn7.addEventListener('click',function() {
+    if(banderaValorPrimerBloque){
+        labelDatos.innerText="";
+        banderaValorPrimerBloque=false;
+        }
     AgregarAlLabel(7); 
 });
 btn8.addEventListener('click',function() {
+    if(banderaValorPrimerBloque){
+        labelDatos.innerText="";
+        banderaValorPrimerBloque=false;
+        }
     AgregarAlLabel(8); 
 });
 btn9.addEventListener('click',function() {
+    if(banderaValorPrimerBloque){
+        labelDatos.innerText="";
+        banderaValorPrimerBloque=false;
+        }
     AgregarAlLabel(9); 
 });
 btn0.addEventListener('click',function() {
+    if(banderaValorPrimerBloque){
+        labelDatos.innerText="";
+        banderaValorPrimerBloque=false;
+        }
     AgregarAlLabel(0); 
 });
 BtnComa.addEventListener('click',function() {
@@ -76,23 +117,37 @@ btnParentesis.addEventListener('click',function()
 
 btnDividir.addEventListener('click',function()
 {/*cuando se haga logica usar / */
+var TextoLabelPrimeraParte = labelDatos.innerText;
+var ValorLblPrimeraParte= parseFloat(TextoLabelPrimeraParte);
+PrimerBloque=ValorLblPrimeraParte;
+
+labelDatos.innerText="";
     AgregarAlLabel('÷');
 });
 
 btnMultiplicar.addEventListener('click',function()
 {/*Cuando se haga logica usar * */
+var TextoLabelPrimeraParte = labelDatos.innerText;
+var ValorLblPrimeraParte= parseFloat(TextoLabelPrimeraParte);
+PrimerBloque=ValorLblPrimeraParte;
+
+labelDatos.innerText="";
     AgregarAlLabel('x');
 });
 
 btnMenos.addEventListener('click',function()
-{
+{ var TextoLabelPrimeraParte = labelDatos.innerText;
+    var ValorLblPrimeraParte= parseFloat(TextoLabelPrimeraParte);
+    PrimerBloque=ValorLblPrimeraParte;
+   
+    labelDatos.innerText="";
     AgregarAlLabel('-');
 });
 
 btnMas.addEventListener('click',function()
 {   
     var TextoLabelPrimeraParte = labelDatos.innerText;
-    var ValorLblPrimeraParte= parseInt(TextoLabelPrimeraParte);
+    var ValorLblPrimeraParte= parseFloat(TextoLabelPrimeraParte);
     PrimerBloque=ValorLblPrimeraParte;
    
     labelDatos.innerText="";
@@ -135,20 +190,59 @@ function OperacionIgual( valorPrimerBloque)
     simboloOperacion=labelDatos.innerText[0];
     var nuevolabelDatos=labelDatos.innerText.slice(1);
     var TextoLabelSegundaParte = nuevolabelDatos;
-    var ValorLblSegundaParte= parseInt(TextoLabelSegundaParte);
+    var ValorLblSegundaParte= parseFloat(TextoLabelSegundaParte);
     SegundoBloque=ValorLblSegundaParte
+    var resultado = 0;
    
-    if(esSuma(simboloOperacion)){
-        var resultado = valorPrimerBloque+SegundoBloque;
+    switch(QueOperacionEs(simboloOperacion)){
+        
+     case 0:/* ES SUMA*/
+        resultado = valorPrimerBloque+SegundoBloque;
         labelDatos.innerText="";
         labelDatos.innerText=resultado;
+        break;
+        case 1: /*ES RESTA */
+        resultado= valorPrimerBloque-SegundoBloque;
+        labelDatos.innerText="";
+        labelDatos.innerText=resultado;
+        break;
+        case 2: /*ES MULTIPLICACION*/
+        resultado= valorPrimerBloque*SegundoBloque;
+        labelDatos.innerText="";
+        labelDatos.innerText=resultado;
+        break;
+        case 3 : /*ES DIVISION */
+        if(ValidarDivisionNoCero(SegundoBloque)){
+        resultado= valorPrimerBloque/SegundoBloque;
+        labelDatos.innerText="";
+        labelDatos.innerText=resultado;
+        }else{
+        labelDatos.innerText="";
+        labelDatos.innerText="No se puede dividir por 0";
+        }
+        break;
     }
+    banderaValorPrimerBloque=true;
+    
 }
  
   
     
  
 
-function esSuma(simbolo){
-    if(simbolo=='+'){return true}else{return false;}
+function QueOperacionEs(simbolo){
+    if(simbolo=='+'){return 0}
+    if(simbolo=='-'){return 1}
+    if(simbolo=='x'){return 2}
+    if(simbolo=='÷'){return 3}
+}
+function ValidarDivisionNoCero(SegundoBloqueDivision)
+{
+if(SegundoBloqueDivision==0)
+    {
+        return false;
+
+
+    }else{return true;}
+
 }
