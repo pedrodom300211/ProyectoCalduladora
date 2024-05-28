@@ -25,6 +25,7 @@ var PrimerBloque;
 var SegundoBloque;
 var simboloOperacion;
 var banderaValorPrimerBloque=true;
+
 /* Evento Click Botones*/
 btn1.addEventListener('click',function() {
     if(banderaValorPrimerBloque){
@@ -149,6 +150,11 @@ btnMas.addEventListener('click',function()
     var TextoLabelPrimeraParte = labelDatos.innerText;
     var ValorLblPrimeraParte= parseFloat(TextoLabelPrimeraParte);
     PrimerBloque=ValorLblPrimeraParte;
+    
+    
+        
+
+    
    
     labelDatos.innerText="";
    
@@ -174,7 +180,7 @@ function AgregarAlLabel( ValorAAgregar){
     labelDatos.innerText+=ValorAAgregar;
 }
 function BorrarTodo( ){
-   
+    document.getElementById('lblDatos').style.color = 'black';
     labelDatos.innerText="";
 }
 function borrarUltimoCaracter() {
@@ -186,13 +192,17 @@ function borrarUltimoCaracter() {
     }else{ alert("No hay Numeros para Borrar")}
 }
 function OperacionIgual( valorPrimerBloque)
-{   
+{  
     simboloOperacion=labelDatos.innerText[0];
     var nuevolabelDatos=labelDatos.innerText.slice(1);
     var TextoLabelSegundaParte = nuevolabelDatos;
     var ValorLblSegundaParte= parseFloat(TextoLabelSegundaParte);
-    SegundoBloque=ValorLblSegundaParte
+   
+        SegundoBloque=ValorLblSegundaParte
+    
+    
     var resultado = 0;
+    
    
     switch(QueOperacionEs(simboloOperacion)){
         
@@ -218,6 +228,7 @@ function OperacionIgual( valorPrimerBloque)
         labelDatos.innerText=resultado;
         }else{
         labelDatos.innerText="";
+        document.getElementById('lblDatos').style.color = 'red';
         labelDatos.innerText="No se puede dividir por 0";
         }
         break;
